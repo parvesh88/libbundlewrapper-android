@@ -1,0 +1,66 @@
+diff --git a/av/media/libeffects/wrapper/Bundle/EffectBundle.h b/av/media/libeffects/wrapper/Bundle/EffectBundle.h
+index 9459b87..72c717b 100644
+--- a/av/media/libeffects/wrapper/Bundle/EffectBundle.h
++++ b/av/media/libeffects/wrapper/Bundle/EffectBundle.h
+@@ -32,11 +32,11 @@ extern "C" {
+ #define MAX_CALL_SIZE              256
+ #define LVM_MAX_SESSIONS           32
+ #define LVM_UNUSED_SESSION         INT_MAX
+-#define BASS_BOOST_CUP_LOAD_ARM9E  150    // Expressed in 0.1 MIPS
+-#define VIRTUALIZER_CUP_LOAD_ARM9E 120    // Expressed in 0.1 MIPS
+-#define EQUALIZER_CUP_LOAD_ARM9E   220    // Expressed in 0.1 MIPS
+-#define VOLUME_CUP_LOAD_ARM9E      0      // Expressed in 0.1 MIPS
+-#define BUNDLE_MEM_USAGE           25     // Expressed in kB
++#define BASS_BOOST_CUP_LOAD_ARM9E  300    // Expressed in 0.1 MIPS
++#define VIRTUALIZER_CUP_LOAD_ARM9E 240    // Expressed in 0.1 MIPS
++#define EQUALIZER_CUP_LOAD_ARM9E   440    // Expressed in 0.1 MIPS
++#define VOLUME_CUP_LOAD_ARM9E      20     // Expressed in 0.1 MIPS
++#define BUNDLE_MEM_USAGE           128     // Expressed in kB
+ //#define LVM_PCM
+ 
+ #ifndef OPENSL_ES_H_
+@@ -135,7 +135,7 @@ typedef enum
+ 
+ static const int PRESET_CUSTOM = -1;
+ 
+-static const uint32_t bandFreqRange[FIVEBAND_NUMBANDS][2] = {
++static const LVM_UINT32 bandFreqRange[FIVEBAND_NUMBANDS][2] = {
+                                        {30000, 120000},
+                                        {120001, 460000},
+                                        {460001, 1800000},
+@@ -145,10 +145,10 @@ static const uint32_t bandFreqRange[FIVEBAND_NUMBANDS][2] = {
+ //Note: If these frequencies change, please update LimitLevel values accordingly.
+ static const LVM_UINT16  EQNB_5BandPresetsFrequencies[] = {
+                                        60,           /* Frequencies in Hz */
+-                                       230,
+-                                       910,
+-                                       3600,
+-                                       14000};
++                                       240,
++                                       1000,
++                                       4000,
++                                       16000};
+ 
+ static const LVM_UINT16 EQNB_5BandPresetsQFactors[] = {
+                                        96,               /* Q factor multiplied by 100 */
+@@ -201,15 +201,15 @@ static const PresetConfig gEqualizerPresets[] = {
+  */
+ 
+ static const float LimitLevel_bandEnergyCoefficient[FIVEBAND_NUMBANDS] = {
+-        7.56, 9.69, 9.59, 7.37, 2.88};
++        9.8, 9.8, 9.8, 9.8, 9.8};
+ 
+-static const float LimitLevel_bandEnergyCrossCoefficient[FIVEBAND_NUMBANDS-1] = {
+-        126.0, 115.0, 125.0, 104.0 };
++static const float LimitLevel_bandEnergyCrossCoefficient[FIVEBAND_NUMBANDS] = {
++        144.0, 144.0, 144.0, 144.0, 144.0};
+ 
+ static const float LimitLevel_bassBoostEnergyCrossCoefficient[FIVEBAND_NUMBANDS] = {
+-        221.21, 208.10, 28.16, 0.0, 0.0 };
++        225.0, 225.0, 0.0, 0.0, 0.0 };
+ 
+-static const float LimitLevel_bassBoostEnergyCoefficient = 7.12;
++static const float LimitLevel_bassBoostEnergyCoefficient = 9.2;
+ 
+ static const float LimitLevel_virtualizerContribution = 1.9;
+ 
